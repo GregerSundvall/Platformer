@@ -15,8 +15,7 @@ int main()
 	bool running = true;
 	Uint64 previous_ticks = SDL_GetPerformanceCounter();
 
-
-	
+	loadMap();
  
 	while (running)
 	{
@@ -60,6 +59,16 @@ int main()
 
 		player.update();
 		player.draw();
+
+		camera.update();
+
+		for (size_t i = 0; i < NUM_BLOCKS; i++)
+		{
+			Block* block = blocks[i];
+			if (block == nullptr) continue;
+
+			block->draw();
+		}
 
 		SDL_RenderPresent(render);
  
